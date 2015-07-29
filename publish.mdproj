@@ -21,12 +21,15 @@
     <!-- file, packages.config, and nuget.exe. The rest can be boot strapped by the build process. -->
     <Error Condition="EXISTS('$(MSBuildThisFileDirectory)packages.config') != 'True'" Text="packages.config was not found at the expected location: $(MSBuildThisFileDirectory)." />
     <Error Condition="EXISTS('$(ToolsFolder)NuGet\NuGet.exe') != 'True'" Text="Nuget.exe was not found at the expected location: $(ToolsFolder)NuGet." />
-    
+
     <!-- Use NuGet to pull down any packages -->
-    <Exec Command="&quot;$(ToolsFolder)NuGet\NuGet.exe&quot; restore &quot;.\packages.config&quot; –PackagesDirectory &quot;.\packages&quot;"
+    <PropertyGroup>
+      <NuGetConfigFileArgument Condition="EXISTS('$(ToolsFolder)NuGet\NuGet.config') == 'True'">-ConfigFile &quot;$(ToolsFolder)NuGet\NuGet.config&quot;</NuGetConfigFileArgument>
+    </PropertyGroup>
+    <Exec Command="&quot;$(ToolsFolder)NuGet\NuGet.exe&quot; restore &quot;.\packages.config&quot; -PackagesDirectory &quot;.\packages&quot; $(NuGetConfigFileArgument)"
           Condition="$(PackageInstalled) != 'True'"/>
 
-    <!-- Get installed packgage version -->
+    <!-- Get installed package version -->
     <XmlPeek
         XmlInputPath=".\packages.config"
         Query="//package[@id='$(BuildTaskPackage)']/@version">
@@ -82,4 +85,5 @@
         Targets="Rebuild" 
         Projects="$(PackageRootFolder)build\net451\OpenPublishingBuild.mdproj" />
   </Target>
+
 </Project>
