@@ -9,6 +9,6 @@
         "notification_subscribers":[
             "yih@microsoft.com"
         ],
-    "notification_severity_level": "Verbose"
+    "report_severity_level": "Verbose"
     }
 }
