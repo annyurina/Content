@@ -8,7 +8,6 @@
         "force_build": "true",
         "notification_subscribers":[
             "yih@microsoft.com"
-        ],
-    "report_severity_level": "Verbose"
+        ]
     }
 }
