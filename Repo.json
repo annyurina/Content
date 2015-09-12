@@ -8,6 +8,6 @@
         "notification_subscribers":[
             "yih@microsoft.com"
         ],
-        "report_severity_level": "Info"
+        "report_severity_level": "Error"
     }
 }
