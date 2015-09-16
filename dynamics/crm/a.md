@@ -6,6 +6,8 @@ ms.topic: Introduction
 
 # hello a
 
+[!INCLUDE [b](non-existing.md)]
+
 Coming soon!!!!!
 Have a try!
 
